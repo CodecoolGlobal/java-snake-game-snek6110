@@ -6,7 +6,9 @@ import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
 import com.sun.javafx.geom.Vec2d;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
 
@@ -28,6 +30,8 @@ public class Game extends Pane {
         spawnEnemies(4);
         spawnPowerUps(4);
 
+        Label health = new Label("label");
+        this.getChildren().add(health);
         GameLoop gameLoop = new GameLoop(snake);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
