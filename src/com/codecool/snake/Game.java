@@ -7,7 +7,6 @@ import com.codecool.snake.eventhandler.InputHandler;
 
 import com.sun.javafx.geom.Vec2d;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -64,11 +63,7 @@ public class Game extends Pane {
     }
 
     private void setRestartButton(){
-        restart.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                restart();
-            }
-        });
+        restart.setOnAction((ActionEvent e) -> restart());
         double windowWidth = Globals.getInstance().WINDOW_WIDTH;
         restart.setMinWidth(50);
         restart.relocate((windowWidth - 1.5 * restart.getMinWidth()), 5);
