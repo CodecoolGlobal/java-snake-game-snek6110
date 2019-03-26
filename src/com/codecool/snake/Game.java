@@ -47,12 +47,10 @@ public class Game extends Pane {
 
     private void spawnSnake() {
         snake = new Snake(new Vec2d(500, 500));
-        snake.healthProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                refreshDisplayedHealth(newValue);
-            }
-        });
+        snake.healthProperty().addListener((
+            ObservableValue<? extends Number> observable, Number oldValue, Number newValue) ->
+            refreshDisplayedHealth(newValue)
+        );
     }
 
     private void setHealthDisplay(){
