@@ -22,7 +22,7 @@ public class SecondEnemy extends Enemy implements Animatable, Interactable {
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
 
-        double direction = rnd.nextDouble() * 360;
+        double direction = rnd.nextDouble() * 30;
         setRotate(direction);
 
         int speed = 3;
@@ -35,7 +35,7 @@ public class SecondEnemy extends Enemy implements Animatable, Interactable {
         if (isOutOfBounds()) {
             destroy();
         }
-        setX(getX() +heading.getX());
+        setX(getX() + heading.getX());
         setY(getY() + heading.getY());
     }
 
