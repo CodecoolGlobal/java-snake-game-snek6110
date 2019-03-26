@@ -6,17 +6,17 @@ import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
 import com.sun.javafx.geom.Vec2d;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 
 
 public class Game extends Pane {
     private Snake snake = null;
-    private Label health = new Label();
+    private Label healthDisplay = new Label();
     private GameTimer gameTimer = new GameTimer();
 
 
@@ -32,9 +32,8 @@ public class Game extends Pane {
         spawnSnake();
         spawnEnemies(4);
         spawnPowerUps(4);
+        setHealthDisplay();
 
-        health.textProperty().setValue("" + snake.getHealth());
-        this.getChildren().add(health);
         GameLoop gameLoop = new GameLoop(snake);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
@@ -56,8 +55,14 @@ public class Game extends Pane {
         });
     }
 
+    private void setHealthDisplay(){
+        healthDisplay.textProperty().setValue("Health: " + snake.getHealth());
+        healthDisplay.setFont(Font.font(25));
+        this.getChildren().add(healthDisplay);
+    }
+
     private void refreshDisplayedHealth(Number number) {
-        health.textProperty().setValue(number.toString());
+        healthDisplay.textProperty().setValue("Health: " + number.toString());
     }
 
     private void spawnEnemies(int numberOfEnemies) {
