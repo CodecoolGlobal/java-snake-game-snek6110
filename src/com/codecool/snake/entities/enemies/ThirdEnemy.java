@@ -25,6 +25,8 @@ public class ThirdEnemy extends Enemy implements Animatable, Interactable {
 
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);
+        /*  todo
+        * változtatni a mozgásán - kövesse a snaket, vagy valami.*/
 
         int speed = 2;
         heading = Utils.directionToVector(direction, speed);
