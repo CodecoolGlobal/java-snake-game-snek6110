@@ -15,6 +15,7 @@ import javafx.scene.layout.Pane;
 
 public class Game extends Pane {
     private Snake snake = null;
+    private Button restart = new Button("Restart");
     private GameTimer gameTimer = new GameTimer();
 
 
@@ -30,7 +31,7 @@ public class Game extends Pane {
         spawnSnake();
         spawnEnemies(4);
         spawnPowerUps(4);
-        addRestartButton();
+        setRestartButton();
 
         GameLoop gameLoop = new GameLoop(snake);
         Globals.getInstance().setGameLoop(gameLoop);
@@ -62,13 +63,15 @@ public class Game extends Pane {
         for(int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
     }
 
-    private void addRestartButton(){
-        Button restart = new Button("Restart");
+    private void setRestartButton(){
         restart.setOnAction(new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {
                 restart();
             }
         });
+        double windowWidth = Globals.getInstance().WINDOW_WIDTH;
+        restart.setMinWidth(50);
+        restart.relocate((windowWidth - 1.5 * restart.getMinWidth()), 5);
         this.getChildren().add(restart);
     }
 
