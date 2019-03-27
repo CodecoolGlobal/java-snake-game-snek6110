@@ -17,9 +17,7 @@ public abstract class FadingPowerUps extends GameEntity implements Interactable 
     }
 
     @Override
-    public String getMessage() {
-        return "Yummy";
-    }
+    public abstract String getMessage();
 
     public void increaseTemporaryLoopCount() {
         temporaryLoopCount ++;

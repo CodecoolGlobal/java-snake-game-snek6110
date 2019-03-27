@@ -44,7 +44,6 @@ public class GameLoop {
             }
             if (getLoopCount() % getPowerUpSpawnRate() == 0) {
                 Globals.getInstance().game.spawnARandomPowerUp();
-                System.out.println("I spawned a powerUp");
             }
             checkCollisions();
             increaseLoopCount();
@@ -74,9 +73,7 @@ public class GameLoop {
     private void increaseLoopCount() {
         loopCount ++;
     }
-    private void restartLoopCount() {
-        loopCount = 0;
-    }
+
     public int getLoopCount(){
         return loopCount;
     }

@@ -18,8 +18,8 @@ public class SpeedDown extends FadingPowerUps implements Interactable,Animatable
     public SpeedDown() {
         setImage(Globals.getInstance().getImage("SpeedDown"));
 
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        setX(rnd.nextDouble() * (Globals.WINDOW_WIDTH-30));
+        setY(rnd.nextDouble() * (Globals.WINDOW_HEIGHT-30));
 
     }
 
@@ -47,7 +47,7 @@ public class SpeedDown extends FadingPowerUps implements Interactable,Animatable
 
     @Override
     public String getMessage() {
-        return "I'm slow as fuck, giiirl :(";
+        return "I don't feel so good..";
     }
 
     @Override

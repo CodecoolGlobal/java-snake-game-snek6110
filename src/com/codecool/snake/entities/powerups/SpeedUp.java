@@ -12,8 +12,13 @@ public class SpeedUp extends FadingPowerUps implements Interactable {
     public SpeedUp() {
         setImage(Globals.getInstance().getImage("SpeedUp"));
 
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        setX(rnd.nextDouble() * (Globals.WINDOW_WIDTH-30));
+        setY(rnd.nextDouble() * (Globals.WINDOW_HEIGHT-30));
 
+    }
+
+    @Override
+    public String getMessage() {
+        return "Gotta go fast!";
     }
 }

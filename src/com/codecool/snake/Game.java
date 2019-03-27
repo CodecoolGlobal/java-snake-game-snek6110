@@ -38,10 +38,11 @@ public class Game extends Pane {
     public void init() {
         spawnSnake();
         spawnEnemies(3);
-        setHealthDisplay();
-        setRestartButton();
+        Globals.getInstance().display.setHealthDisplay(healthDisplay, snake.getHealth());
+        Globals.getInstance().display.setRestartButton(restart);
+
         GameLoop gameLoop = new GameLoop(snake);
-        gameLoop.setPowerUpSpawnRate(240);
+        gameLoop.setPowerUpSpawnRate(360);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
         gameTimer.play();
@@ -63,19 +64,11 @@ public class Game extends Pane {
         snake = new Snake(new Vec2d(500, 500));
         snake.healthProperty().addListener((
             ObservableValue<? extends Number> observable, Number oldValue, Number newValue) ->
-            refreshDisplayedHealth(newValue)
+            Globals.getInstance().display.refreshDisplayedHealth(healthDisplay, newValue)
         );
     }
 
-    private void setHealthDisplay(){
-        healthDisplay.textProperty().setValue("Health: " + snake.getHealth());
-        healthDisplay.setFont(Font.font(25));
-        this.getChildren().add(healthDisplay);
-    }
 
-    private void refreshDisplayedHealth(Number number) {
-        healthDisplay.textProperty().setValue("Health: " + number.toString());
-    }
     private void spawnEnemies(int numberOfEnemies) {
         for(int i = 0; i < numberOfEnemies; ++i){
             if (i == 0) {
@@ -93,14 +86,6 @@ public class Game extends Pane {
         for(int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
     }
 
-    public void spawnSpeedup(int numberOfSpeedUps) {
-        for(int i = 0; i < numberOfSpeedUps; ++i) new SpeedUp();
-    }
-
-    public void spawnSpeedDown(int numberOfSpeedDowns) {
-        for(int i = 0; i < numberOfSpeedDowns; ++i) new SpeedDown();
-    }
-
     public void spawnARandomPowerUp () {
         Random random = new Random();
         switch (random.nextInt(2)) {
@@ -113,14 +98,6 @@ public class Game extends Pane {
         }
 
 
-    }
-
-    private void setRestartButton(){
-        restart.setOnAction((ActionEvent e) -> restart());
-        double windowWidth = Globals.getInstance().WINDOW_WIDTH;
-        restart.setMinWidth(50);
-        restart.relocate((windowWidth - 1.5 * restart.getMinWidth()), 5);
-        this.getChildren().add(restart);
     }
 
     private void setupInputHandling() {
