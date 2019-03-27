@@ -27,7 +27,7 @@ public class Game extends Pane {
 
     public void init() {
         spawnSnake();
-        spawnEnemies(10);
+        spawnEnemies(3);
         spawnPowerUps(4);
 
         GameLoop gameLoop = new GameLoop(snake);
@@ -46,9 +46,14 @@ public class Game extends Pane {
     }
     private void spawnEnemies(int numberOfEnemies) {
         for(int i = 0; i < numberOfEnemies; ++i){
-            new SimpleEnemy();
-            new SecondEnemy();
-            new ThirdEnemy();
+            if (i == 0) {
+                new ThirdEnemy();
+                new SimpleEnemy();
+                new SecondEnemy();
+            } else {
+                new SimpleEnemy();
+                new SecondEnemy();
+            }
         }
     }
 

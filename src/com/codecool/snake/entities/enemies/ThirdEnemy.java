@@ -6,7 +6,10 @@ import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.animation.PathTransition;
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 
 import java.util.Random;
 
@@ -24,18 +27,22 @@ public class ThirdEnemy extends Enemy implements Animatable, Interactable {
 
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);
-        /*  todo
-        * változtatni a mozgásán - kövesse a snaket, vagy valami.*/
 
         int speed = 2;
         heading = Utils.directionToVector(direction, speed);
+
+        Circle circle = new Circle(515, 335,  350);
+        PathTransition transition = new PathTransition();
+        transition.setNode(this);
+        transition.setDuration(Duration.seconds(10));
+        transition.setPath(circle);
+        transition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+        transition.setCycleCount(PathTransition.INDEFINITE);
+        transition.play();
     }
 
     @Override
     public void step(){
-        if (isOutOfBounds()){
-            destroy();
-        }
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
     }

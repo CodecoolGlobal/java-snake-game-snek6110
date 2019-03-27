@@ -6,7 +6,10 @@ import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
+import javafx.animation.PathTransition;
 import javafx.geometry.Point2D;
+import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 import java.util.Random;
 
@@ -24,20 +27,22 @@ public class SecondEnemy extends Enemy implements Animatable, Interactable {
 
         double direction = rnd.nextDouble() * 30;
         setRotate(direction);
-        /*
-        TODO
-        Változtati a mozgáson, pl. körbe menjen*/
 
         int speed = 3;
         heading = Utils.directionToVector(direction, speed);
+        Rectangle rectangle = new Rectangle(getX() + heading.getX(), getY() + heading.getY(),40, 75);
+
+        PathTransition transition = new PathTransition();
+        transition.setNode(this);
+        transition.setDuration(Duration.seconds(3));
+        transition.setPath(rectangle);
+        transition.setCycleCount(PathTransition.INDEFINITE);
+        transition.play();
     }
 
 
     @Override
     public void step() {
-        if (isOutOfBounds()) {
-            destroy();
-        }
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
     }
@@ -54,4 +59,5 @@ public class SecondEnemy extends Enemy implements Animatable, Interactable {
 
     @Override
     public String getMessage(){ return (getDamage() + " damage"); }
+
 }
