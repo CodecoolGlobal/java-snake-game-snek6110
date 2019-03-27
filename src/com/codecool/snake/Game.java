@@ -1,6 +1,8 @@
 package com.codecool.snake;
 
+import com.codecool.snake.entities.enemies.SecondEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
+import com.codecool.snake.entities.enemies.ThirdEnemy;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
@@ -32,7 +34,7 @@ public class Game extends Pane {
 
     public void init() {
         spawnSnake();
-        spawnEnemies(4);
+        spawnEnemies(3);
         spawnPowerUps(4);
         setHealthDisplay();
         setRestartButton();
@@ -72,9 +74,17 @@ public class Game extends Pane {
     private void refreshDisplayedHealth(Number number) {
         healthDisplay.textProperty().setValue("Health: " + number.toString());
     }
-
     private void spawnEnemies(int numberOfEnemies) {
-        for(int i = 0; i < numberOfEnemies; ++i) new SimpleEnemy();
+        for(int i = 0; i < numberOfEnemies; ++i){
+            if (i == 0) {
+                new ThirdEnemy();
+                new SimpleEnemy();
+                new SecondEnemy();
+            } else {
+                new SimpleEnemy();
+                new SecondEnemy();
+            }
+        }
     }
 
     private void spawnPowerUps(int numberOfPowerUps) {
