@@ -2,16 +2,14 @@ package com.codecool.snake.entities.powerups;
 
 import com.codecool.snake.Utils;
 import com.codecool.snake.entities.Animatable;
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
 import com.codecool.snake.entities.Interactable;
-import com.codecool.snake.entities.snakes.SnakeHead;
 import javafx.geometry.Point2D;
 
 import java.util.Random;
 
 
-public class SpeedDown extends PowerUps implements Interactable,Animatable {
+public class SpeedDown extends FadingPowerUps implements Interactable,Animatable {
     private static Random rnd = new Random();
     private boolean isGoingForward = true;
     private final int speed = 1;

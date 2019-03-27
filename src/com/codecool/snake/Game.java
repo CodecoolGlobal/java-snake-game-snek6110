@@ -1,6 +1,5 @@
 package com.codecool.snake;
 
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.enemies.SecondEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.enemies.ThirdEnemy;
@@ -19,8 +18,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 
@@ -43,8 +40,6 @@ public class Game extends Pane {
         spawnEnemies(3);
         setHealthDisplay();
         setRestartButton();
-
-        spawnEnemies(3);
         GameLoop gameLoop = new GameLoop(snake);
         gameLoop.setPowerUpSpawnRate(240);
         Globals.getInstance().setGameLoop(gameLoop);

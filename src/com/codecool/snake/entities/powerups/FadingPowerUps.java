@@ -4,7 +4,7 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
 
-public abstract class PowerUps extends GameEntity implements Interactable {
+public abstract class FadingPowerUps extends GameEntity implements Interactable {
 
     public int temporaryLoopCount;
 
@@ -18,7 +18,7 @@ public abstract class PowerUps extends GameEntity implements Interactable {
 
     @Override
     public String getMessage() {
-        return "I'm fast as fuck, boiii :)";
+        return "Yummy";
     }
 
     public void increaseTemporaryLoopCount() {

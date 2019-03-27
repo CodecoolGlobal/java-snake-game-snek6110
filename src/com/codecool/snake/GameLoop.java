@@ -3,12 +3,11 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.Interactable;
-import com.codecool.snake.entities.powerups.PowerUps;
+import com.codecool.snake.entities.powerups.FadingPowerUps;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 
 import java.util.List;
-import java.util.Random;
 
 public class GameLoop {
     private Snake snake;
@@ -38,9 +37,9 @@ public class GameLoop {
                 if (gameObject instanceof Animatable) {
                     ((Animatable) gameObject).step();
                 }
-                if (gameObject instanceof PowerUps) {
-                    ((PowerUps) gameObject).increaseTemporaryLoopCount();
-                    ((PowerUps) gameObject).fadeAway(10*60);
+                if (gameObject instanceof FadingPowerUps) {
+                    ((FadingPowerUps) gameObject).increaseTemporaryLoopCount();
+                    ((FadingPowerUps) gameObject).fadeAway(10*60);
                 }
             }
             if (getLoopCount() % getPowerUpSpawnRate() == 0) {

@@ -1,13 +1,14 @@
 package com.codecool.snake.entities.powerups;
 
-import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.Globals;
+import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.snakes.SnakeHead;
+
 import java.util.Random;
 
 
-public class SimplePowerUp extends PowerUps implements Interactable {
+public class SimplePowerUp extends GameEntity implements Interactable {
     private static Random rnd = new Random();
 
     public SimplePowerUp() {
@@ -23,10 +24,12 @@ public class SimplePowerUp extends PowerUps implements Interactable {
     }
 
     @Override
-    public void fadeAway(int loopsToFade) {
+    public void apply(GameEntity entity) {
+        if(entity instanceof SnakeHead){
+            System.out.println(getMessage());
+            destroy();
+        }
     }
 
-    @Override
-    public void increaseTemporaryLoopCount() {
-    }
+
 }
