@@ -20,8 +20,6 @@ import java.util.Random;
 public class Game extends Pane {
     private Snake snake = null;
     private GameTimer gameTimer = new GameTimer();
-    private List<GameEntity> powerUpList = new ArrayList<>();
-
 
     public Game() {
         Globals.getInstance().game = this;
@@ -35,7 +33,7 @@ public class Game extends Pane {
         spawnSnake();
         spawnEnemies(3);
         GameLoop gameLoop = new GameLoop(snake);
-        gameLoop.setPowerUpSpawnRate();
+        gameLoop.setPowerUpSpawnRate(240);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
         gameTimer.play();
@@ -54,7 +52,7 @@ public class Game extends Pane {
         for(int i = 0; i < numberOfEnemies; ++i) new SimpleEnemy();
     }
 
-    public void spawnPowerUps(int numberOfPowerUps) {
+    public void spawnSimplePowerUps(int numberOfPowerUps) {
         for(int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
     }
 
@@ -68,7 +66,7 @@ public class Game extends Pane {
 
     public void spawnARandomPowerUp () {
         Random random = new Random();
-        switch (random.nextInt(3)) {
+        switch (random.nextInt(2)) {
             case 0:
                 new SpeedUp();
                 break;

@@ -4,7 +4,6 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.Interactable;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
-import com.codecool.snake.entities.powerups.SpeedDown;
 import com.codecool.snake.entities.snakes.Snake;
 
 import java.util.List;
@@ -35,13 +34,11 @@ public class GameLoop {
                 }
             }
             if (!containsInstance(Globals.getInstance().display.getObjectList(), SimplePowerUp.class)) {
-                Globals.getInstance().game.spawnPowerUps(1);
+                Globals.getInstance().game.spawnSimplePowerUps(1);
             }
             if (getLoopCount() % getPowerUpSpawnRate() == 0) {
                 Globals.getInstance().game.spawnARandomPowerUp();
-                System.out.println("One second has passed");
-                restartLoopCount();
-                setPowerUpSpawnRate();
+                System.out.println("I spawned a powerUp");
             }
             checkCollisions();
             increaseLoopCount();
@@ -74,13 +71,12 @@ public class GameLoop {
     private void restartLoopCount() {
         loopCount = 0;
     }
-    private int getLoopCount(){
+    public int getLoopCount(){
         return loopCount;
     }
 
-    public void setPowerUpSpawnRate(){
-        Random random = new Random();
-        powerUpSpawnRate = random.nextInt(240)+121;
+    public void setPowerUpSpawnRate(int loops){
+        powerUpSpawnRate = loops;
     }
 
     private int getPowerUpSpawnRate(){

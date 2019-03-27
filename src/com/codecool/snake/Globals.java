@@ -14,7 +14,7 @@ public class Globals {
     public Display display;
     public Game game;
 
-    private GameLoop gameLoop;
+    public GameLoop gameLoop;
     private Resources resources;
 
 
@@ -35,6 +35,7 @@ public class Globals {
         resources.addImage("PowerUpBerry", new Image("powerup_berry.png"));
         resources.addImage("SpeedUp", new Image("speed_up.png"));
         resources.addImage("SpeedDown", new Image("speed_down.png"));
+        resources.addImage("SpeedDownMirrored", new Image("speed_down_mirrored.png"));
 
     }
 
