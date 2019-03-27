@@ -3,13 +3,18 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.powerups.SimplePowerUp;
+import com.codecool.snake.entities.powerups.SpeedDown;
 import com.codecool.snake.entities.snakes.Snake;
 
 import java.util.List;
+import java.util.Random;
 
 public class GameLoop {
     private Snake snake;
     private boolean running = false;
+    private int loopCount;
+    private int powerUpSpawnRate;
 
     public GameLoop(Snake snake) { this.snake = snake; }
 
@@ -29,7 +34,17 @@ public class GameLoop {
                     ((Animatable) gameObject).step();
                 }
             }
+            if (!containsInstance(Globals.getInstance().display.getObjectList(), SimplePowerUp.class)) {
+                Globals.getInstance().game.spawnPowerUps(1);
+            }
+            if (getLoopCount() % getPowerUpSpawnRate() == 0) {
+                Globals.getInstance().game.spawnARandomPowerUp();
+                System.out.println("One second has passed");
+                restartLoopCount();
+                setPowerUpSpawnRate();
+            }
             checkCollisions();
+            increaseLoopCount();
         }
 
         Globals.getInstance().display.frameFinished();
@@ -51,5 +66,33 @@ public class GameLoop {
                 }
             }
         }
+    }
+
+    private void increaseLoopCount() {
+        loopCount ++;
+    }
+    private void restartLoopCount() {
+        loopCount = 0;
+    }
+    private int getLoopCount(){
+        return loopCount;
+    }
+
+    public void setPowerUpSpawnRate(){
+        Random random = new Random();
+        powerUpSpawnRate = random.nextInt(240)+121;
+    }
+
+    private int getPowerUpSpawnRate(){
+        return powerUpSpawnRate;
+    }
+
+    private boolean containsInstance(List<GameEntity> gameObjectList, Class classInQuestion) {
+        for ( GameEntity gameEntity : gameObjectList) {
+            if (classInQuestion.isInstance(gameEntity)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
