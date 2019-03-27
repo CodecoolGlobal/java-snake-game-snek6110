@@ -7,7 +7,7 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 import java.util.Random;
 
 
-public class SimplePowerUp extends GameEntity implements Interactable {
+public class SimplePowerUp extends PowerUps implements Interactable {
     private static Random rnd = new Random();
 
     public SimplePowerUp() {
@@ -18,15 +18,15 @@ public class SimplePowerUp extends GameEntity implements Interactable {
     }
 
     @Override
-    public void apply(GameEntity entity) {
-        if(entity instanceof SnakeHead){
-            System.out.println(getMessage());
-            destroy();
-        }
+    public String getMessage() {
+        return "Got power-up :)";
     }
 
     @Override
-    public String getMessage() {
-        return "Got power-up :)";
+    public void fadeAway(int loopsToFade) {
+    }
+
+    @Override
+    public void increaseTemporaryLoopCount() {
     }
 }

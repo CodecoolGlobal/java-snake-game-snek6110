@@ -7,7 +7,7 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 import java.util.Random;
 
 
-public class SpeedUp extends GameEntity implements Interactable {
+public class SpeedUp extends PowerUps implements Interactable {
     private static Random rnd = new Random();
 
     public SpeedUp() {
@@ -16,18 +16,5 @@ public class SpeedUp extends GameEntity implements Interactable {
         setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
         setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
 
-    }
-
-    @Override
-    public void apply(GameEntity entity) {
-        if(entity instanceof SnakeHead){
-            System.out.println(getMessage());
-            destroy();
-        }
-    }
-
-    @Override
-    public String getMessage() {
-        return "I'm fast as fuck, boiii :)";
     }
 }

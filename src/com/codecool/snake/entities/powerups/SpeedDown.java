@@ -11,7 +11,7 @@ import javafx.geometry.Point2D;
 import java.util.Random;
 
 
-public class SpeedDown extends GameEntity implements Interactable,Animatable {
+public class SpeedDown extends PowerUps implements Interactable,Animatable {
     private static Random rnd = new Random();
     private boolean isGoingForward = true;
     private final int speed = 1;
@@ -45,15 +45,6 @@ public class SpeedDown extends GameEntity implements Interactable,Animatable {
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
 
-    }
-
-
-    @Override
-    public void apply(GameEntity entity) {
-        if(entity instanceof SnakeHead){
-            System.out.println(getMessage());
-            destroy();
-        }
     }
 
     @Override

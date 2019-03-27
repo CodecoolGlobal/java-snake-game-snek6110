@@ -3,6 +3,7 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.entities.Animatable;
 import com.codecool.snake.entities.Interactable;
+import com.codecool.snake.entities.powerups.PowerUps;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.snakes.Snake;
 
@@ -27,14 +28,20 @@ public class GameLoop {
 
     public void step() {
         if(running) {
+
+            if (!containsInstance(Globals.getInstance().display.getObjectList(), SimplePowerUp.class)) {
+                Globals.getInstance().game.spawnSimplePowerUps(1);
+            }
+
             snake.step();
             for (GameEntity gameObject : Globals.getInstance().display.getObjectList()) {
                 if (gameObject instanceof Animatable) {
                     ((Animatable) gameObject).step();
                 }
-            }
-            if (!containsInstance(Globals.getInstance().display.getObjectList(), SimplePowerUp.class)) {
-                Globals.getInstance().game.spawnSimplePowerUps(1);
+                if (gameObject instanceof PowerUps) {
+                    ((PowerUps) gameObject).increaseTemporaryLoopCount();
+                    ((PowerUps) gameObject).fadeAway(10*60);
+                }
             }
             if (getLoopCount() % getPowerUpSpawnRate() == 0) {
                 Globals.getInstance().game.spawnARandomPowerUp();
