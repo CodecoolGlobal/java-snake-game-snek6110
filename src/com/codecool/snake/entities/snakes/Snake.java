@@ -7,13 +7,12 @@ import com.codecool.snake.entities.GameEntity;
 import com.codecool.snake.eventhandler.InputHandler;
 
 import com.sun.javafx.geom.Vec2d;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.input.KeyCode;
 
 
 public class Snake implements Animatable {
     private static final float speed = 2;
-    private SimpleIntegerProperty health = new SimpleIntegerProperty(100);
+    private int health = 100;
 
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
@@ -24,14 +23,6 @@ public class Snake implements Animatable {
         body = new DelayedModificationList<>();
 
         addPart(4);
-    }
-
-    public SimpleIntegerProperty healthProperty() {
-        return health;
-    }
-
-    public int getHealth() {
-        return health.get();
     }
 
     public void step() {
@@ -63,11 +54,11 @@ public class Snake implements Animatable {
     }
 
     public void changeHealth(int diff) {
-        health.set(health.get() + diff);
+        health += diff;
     }
 
     private void checkForGameOverConditions() {
-        if (head.isOutOfBounds() || health.get() <= 0) {
+        if (head.isOutOfBounds() || health <= 0) {
             System.out.println("Game Over");
             Globals.getInstance().stopGame();
         }
