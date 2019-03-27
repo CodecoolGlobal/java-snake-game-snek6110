@@ -36,8 +36,8 @@ public class Game extends Pane {
         spawnSnake();
         spawnEnemies(3);
         spawnPowerUps(4);
-        setHealthDisplay();
-        setRestartButton();
+        Globals.getInstance().display.setHealthDisplay(healthDisplay, snake.getHealth());
+        Globals.getInstance().display.setRestartButton(restart);
 
         GameLoop gameLoop = new GameLoop(snake);
         Globals.getInstance().setGameLoop(gameLoop);
@@ -61,19 +61,11 @@ public class Game extends Pane {
         snake = new Snake(new Vec2d(500, 500));
         snake.healthProperty().addListener((
             ObservableValue<? extends Number> observable, Number oldValue, Number newValue) ->
-            refreshDisplayedHealth(newValue)
+            Globals.getInstance().display.refreshDisplayedHealth(healthDisplay, newValue)
         );
     }
 
-    private void setHealthDisplay(){
-        healthDisplay.textProperty().setValue("Health: " + snake.getHealth());
-        healthDisplay.setFont(Font.font(25));
-        this.getChildren().add(healthDisplay);
-    }
 
-    private void refreshDisplayedHealth(Number number) {
-        healthDisplay.textProperty().setValue("Health: " + number.toString());
-    }
     private void spawnEnemies(int numberOfEnemies) {
         for(int i = 0; i < numberOfEnemies; ++i){
             if (i == 0) {
@@ -89,14 +81,6 @@ public class Game extends Pane {
 
     private void spawnPowerUps(int numberOfPowerUps) {
         for(int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
-    }
-
-    private void setRestartButton(){
-        restart.setOnAction((ActionEvent e) -> restart());
-        double windowWidth = Globals.getInstance().WINDOW_WIDTH;
-        restart.setMinWidth(50);
-        restart.relocate((windowWidth - 1.5 * restart.getMinWidth()), 5);
-        this.getChildren().add(restart);
     }
 
     private void setupInputHandling() {
