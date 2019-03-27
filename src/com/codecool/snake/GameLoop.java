@@ -45,6 +45,11 @@ public class GameLoop {
             if (getLoopCount() % getPowerUpSpawnRate() == 0) {
                 Globals.getInstance().game.spawnARandomPowerUp();
             }
+            if (snake.isHigh()) {
+                snake.getHead().getHigh();
+                snake.getHead().increaseTemporaryLoopCount();
+            }
+
             checkCollisions();
             increaseLoopCount();
         }

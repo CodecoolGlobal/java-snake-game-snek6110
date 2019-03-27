@@ -6,7 +6,7 @@ import com.codecool.snake.entities.snakes.SnakeHead;
 
 public abstract class FadingPowerUps extends GameEntity implements Interactable {
 
-    public int temporaryLoopCount;
+    private int temporaryLoopCount;
 
     @Override
     public void apply(GameEntity entity) {

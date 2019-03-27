@@ -3,6 +3,7 @@ package com.codecool.snake;
 import com.codecool.snake.entities.enemies.SecondEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.enemies.ThirdEnemy;
+import com.codecool.snake.entities.powerups.Mushroom;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
 import com.codecool.snake.entities.powerups.SpeedDown;
 import com.codecool.snake.entities.powerups.SpeedUp;
@@ -88,12 +89,15 @@ public class Game extends Pane {
 
     public void spawnARandomPowerUp () {
         Random random = new Random();
-        switch (random.nextInt(2)) {
+        switch (random.nextInt(3)) {
             case 0:
                 new SpeedUp();
                 break;
             case 1:
                 new SpeedDown();
+                break;
+            case 2:
+                new Mushroom();
                 break;
         }
 
