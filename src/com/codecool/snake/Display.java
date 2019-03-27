@@ -3,7 +3,12 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import java.util.List;
 
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 
 public class Display {
@@ -17,6 +22,28 @@ public class Display {
     public void add(GameEntity entity) {
         displayPane.getChildren().add(entity);
         gameObjects.add(entity);
+    }
+
+    public void showGameOverScreen(int snakeLength) {
+        double width = Globals.WINDOW_WIDTH;
+        double height = Globals.WINDOW_HEIGHT;
+
+        Label gameOver = new Label("Game Over");
+        gameOver.setMinWidth(width);
+        gameOver.setFont(Font.font("Arial", FontWeight.BOLD,45));
+        gameOver.setTextFill(Color.web("#8b0000"));
+        gameOver.setAlignment(Pos.CENTER);
+        gameOver.relocate(0,height / 2 - 30);
+
+        Label length = new Label("Your snake's length: " + snakeLength);
+        length.setMinWidth(width);
+        length.setFont(Font.font(25));
+        length.setAlignment(Pos.CENTER);
+        length.relocate(0, height / 2 + 30);
+
+        clear();
+        displayPane.setStyle("-fx-background-color: #c2b280;");
+        displayPane.getChildren().addAll(gameOver, length);
     }
 
     public void remove(GameEntity entity) {
