@@ -13,6 +13,8 @@ import com.codecool.snake.entities.powerups.SpeedUp;
 import com.sun.javafx.geom.Vec2d;
 import javafx.geometry.Point2D;
 
+import java.util.Random;
+
 
 public class SnakeHead extends GameEntity implements Interactable {
     private static final float turnRate = 2;
@@ -88,10 +90,11 @@ public class SnakeHead extends GameEntity implements Interactable {
             snake.changeSpeed(-0.3f);
         }
         else if(entity instanceof Mushroom){
+            Random random = new Random();
             snake.addPart(6);
             snake.setHigh(true);
             setTemporaryLoopCount(0);
-            snake.changeHealth(5);
+            snake.changeHealth(random.nextInt(20)-10);
         }
     }
 
