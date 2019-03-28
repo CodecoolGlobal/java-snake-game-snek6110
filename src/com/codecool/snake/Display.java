@@ -16,6 +16,11 @@ import javafx.scene.text.FontWeight;
 public class Display {
     private Pane displayPane;
     private DelayedModificationList<GameEntity> gameObjects = new DelayedModificationList<>();
+    private String[] backgroundColors = new String[]{"-fx-background-color: #3366ff;", "-fx-background-color: #00ffff;",
+            "-fx-background-color: #00cc00;", "-fx-background-color: #ffff00;", "-fx-background-color: #ff0000;",
+            "-fx-background-color: #ff33cc;", "-fx-background-color: #660066;"};
+
+    private int backgroundColorNumber;
 
     public Display(Pane pane) {
         displayPane = pane;
@@ -25,6 +30,20 @@ public class Display {
     public void add(GameEntity entity) {
         displayPane.getChildren().add(entity);
         gameObjects.add(entity);
+    }
+
+    public void updateBackground() {
+        if (backgroundColorNumber < 6) {
+            backgroundColorNumber++;
+        }
+        else {
+            backgroundColorNumber = 0;
+        }
+        displayPane.setStyle(backgroundColors[backgroundColorNumber]);
+    }
+
+    public void resetBackground() {
+        displayPane.setStyle("-fx-background-color: #c2b280;");
     }
 
     public void showGameOverScreen(int snakeLength) {
