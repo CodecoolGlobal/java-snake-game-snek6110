@@ -76,6 +76,34 @@ public class SnakeHead extends GameEntity implements Interactable {
         }
     }
 
+    public void increaseTemporaryLoopCount() {
+        temporaryLoopCount ++;
+    }
+
+    public void setTemporaryLoopCount(int temporaryLoopCount) {
+        this.temporaryLoopCount = temporaryLoopCount;
+    }
+
+    public void updateImage() {
+        if (headImageNumber < 8) {
+            setImage(Globals.getInstance().getImage("SnakeHead" + headImageNumber));
+            headImageNumber ++;
+        }
+        else {
+            headImageNumber = 1;
+        }
+    }
+
+    public void getHigh() {
+        if (temporaryLoopCount % 2 == 0) {
+            updateImage();
+        }
+        if (temporaryLoopCount == 60 * 10) {
+            snake.setHigh(false);
+            setImage(Globals.getInstance().getImage("SnakeHead"));
+        }
+    }
+
     @Override
     public void apply(GameEntity entity) {
         if(entity instanceof Enemy){
