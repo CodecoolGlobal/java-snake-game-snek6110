@@ -1,11 +1,8 @@
 package com.codecool.snake;
 
 import com.codecool.snake.resources.Resources;
-import com.sun.javafx.geom.Vec2d;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 
-import java.util.Vector;
 
 // class for holding all static stuff
 public class Globals {
@@ -19,16 +16,6 @@ public class Globals {
 
     public GameLoop gameLoop;
     private Resources resources;
-
-    private Vec2d currentHeadPosition;
-
-    public void setCurrentHeadPosition(Vec2d currentHeadPosition) {
-        this.currentHeadPosition = currentHeadPosition;
-    }
-
-    public Vec2d getCurrentHeadPosition() {
-        return currentHeadPosition;
-    }
 
     public static Globals getInstance() {
         if(instance == null) instance = new Globals();

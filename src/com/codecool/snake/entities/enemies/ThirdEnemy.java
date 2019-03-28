@@ -11,8 +11,6 @@ import javafx.geometry.Point2D;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-import java.util.Random;
-
 public class ThirdEnemy extends Enemy implements Animatable, Interactable {
 
     private Point2D heading;
