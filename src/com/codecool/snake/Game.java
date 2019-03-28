@@ -23,6 +23,9 @@ public class Game extends Pane {
     private Button restart = new Button("Restart");
     private GameTimer gameTimer = new GameTimer();
 
+    public Snake getSnake() {
+        return snake;
+    }
 
     public Game() {
         Globals.getInstance().game = this;
