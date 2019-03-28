@@ -19,6 +19,6 @@ public class Mushroom extends FadingPowerUps implements Interactable {
 
     @Override
     public String getMessage() {
-        return " 420 ";
+        return " I don't feel so good.. ";
     }
 }

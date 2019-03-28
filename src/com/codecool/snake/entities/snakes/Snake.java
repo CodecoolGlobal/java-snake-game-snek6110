@@ -41,7 +41,13 @@ public class Snake implements Animatable {
 
     public void step() {
         SnakeControl turnDir = getUserInput();
-        head.updateRotation(turnDir, speed);
+
+        if (!isHigh) {
+            head.updateRotation(turnDir, speed, 1);
+        }
+        else {
+            head.updateRotation(turnDir, speed, -2);
+        }
 
         updateSnakeBodyHistory();
         checkForGameOverConditions();
