@@ -47,7 +47,7 @@ public class SpeedDown extends FadingPowerUps implements Interactable,Animatable
 
     @Override
     public String getMessage() {
-        return "I don't feel so good..";
+        return "Even a snail will eventually reach its destination.";
     }
 
     @Override

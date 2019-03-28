@@ -13,6 +13,8 @@ import com.codecool.snake.entities.powerups.SpeedUp;
 import com.sun.javafx.geom.Vec2d;
 import javafx.geometry.Point2D;
 
+import java.util.Random;
+
 
 public class SnakeHead extends GameEntity implements Interactable {
     private static final float turnRate = 2;
@@ -27,14 +29,14 @@ public class SnakeHead extends GameEntity implements Interactable {
         setPosition(position);
     }
 
-    public void updateRotation(SnakeControl turnDirection, float speed) {
+    public void updateRotation(SnakeControl turnDirection, float speed, int negativeIfHigh) {
         double headRotation = getRotate();
 
         if (turnDirection.equals(SnakeControl.TURN_LEFT)) {
-            headRotation = headRotation - turnRate;
+            headRotation = headRotation + negativeIfHigh * (- turnRate);
         }
         if (turnDirection.equals(SnakeControl.TURN_RIGHT)) {
-            headRotation = headRotation + turnRate;
+            headRotation = headRotation + negativeIfHigh * (turnRate);
         }
 
         // set rotation and position
@@ -81,7 +83,6 @@ public class SnakeHead extends GameEntity implements Interactable {
             snake.changeHealth(((Enemy) entity).getDamage());
         }
         else if(entity instanceof SimplePowerUp){
-            System.out.println(getMessage());
             snake.addPart(4);
         }
         else if(entity instanceof SpeedUp){
@@ -91,8 +92,11 @@ public class SnakeHead extends GameEntity implements Interactable {
             snake.changeSpeed(-0.3f);
         }
         else if(entity instanceof Mushroom){
+            Random random = new Random();
+            snake.addPart(6);
             snake.setHigh(true);
             setTemporaryLoopCount(0);
+            snake.changeHealth(random.nextInt(20)-10);
         }
     }
 

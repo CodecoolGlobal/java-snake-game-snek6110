@@ -58,6 +58,6 @@ public class SecondEnemy extends Enemy implements Animatable, Interactable {
 
 
     @Override
-    public String getMessage(){ return (getDamage() + " damage"); }
+    public String getMessage(){ return (getDamage() + " health"); }
 
 }

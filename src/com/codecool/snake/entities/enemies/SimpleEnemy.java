@@ -48,6 +48,6 @@ public class SimpleEnemy extends Enemy implements Animatable, Interactable {
 
     @Override
     public String getMessage() {
-        return (getDamage() + " damage");
+        return (getDamage() + " health");
     }
 }

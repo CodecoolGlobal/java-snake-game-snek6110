@@ -28,9 +28,9 @@ public class GameLoop {
     public void step() {
         if(running) {
 
-            if (!containsInstance(Globals.getInstance().display.getObjectList(), SimplePowerUp.class)) {
-                Globals.getInstance().game.spawnSimplePowerUps(1);
-            }
+//            if (!containsInstance(Globals.getInstance().display.getObjectList(), SimplePowerUp.class)) {
+//                Globals.getInstance().game.spawnSimplePowerUps(1);
+//            }
 
             snake.step();
             for (GameEntity gameObject : Globals.getInstance().display.getObjectList()) {
@@ -91,12 +91,12 @@ public class GameLoop {
         return powerUpSpawnRate;
     }
 
-    private boolean containsInstance(List<GameEntity> gameObjectList, Class classInQuestion) {
-        for ( GameEntity gameEntity : gameObjectList) {
-            if (classInQuestion.isInstance(gameEntity)) {
-                return true;
-            }
-        }
-        return false;
-    }
+//    private boolean containsInstance(List<GameEntity> gameObjectList, Class classInQuestion) {
+//        for ( GameEntity gameEntity : gameObjectList) {
+//            if (classInQuestion.isInstance(gameEntity)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
 }

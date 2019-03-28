@@ -41,6 +41,7 @@ public class Game extends Pane {
     public void init() {
         spawnSnake();
         spawnEnemies(3);
+        new SimplePowerUp();
         Globals.getInstance().display.setHealthDisplay(healthDisplay, snake.getHealth());
         Globals.getInstance().display.setRestartButton(restart);
 
@@ -85,20 +86,16 @@ public class Game extends Pane {
         }
     }
 
-    public void spawnSimplePowerUps(int numberOfPowerUps) {
-        for(int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
-    }
-
     public void spawnARandomPowerUp () {
         Random random = new Random();
-        switch (random.nextInt(3)) {
+        switch (random.nextInt(4)) {
             case 0:
                 new SpeedUp();
                 break;
             case 1:
                 new SpeedDown();
                 break;
-            case 2:
+            case 2:case 3:
                 new Mushroom();
                 break;
         }
