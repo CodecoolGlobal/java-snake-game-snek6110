@@ -109,8 +109,4 @@ public class Snake implements Animatable {
     public boolean isHigh() {
         return isHigh;
     }
-
-    public SnakeHead getHead() {
-        return head;
-    }
 }
