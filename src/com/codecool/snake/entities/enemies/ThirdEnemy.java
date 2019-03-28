@@ -16,14 +16,12 @@ import java.util.Random;
 public class ThirdEnemy extends Enemy implements Animatable, Interactable {
 
     private Point2D heading;
-    private static Random rnd = new Random();
 
     public ThirdEnemy(){
         super(-5);
 
         setImage(Globals.getInstance().getImage("ThirdEnemy"));
-        setX(rnd.nextDouble() * Globals.WINDOW_WIDTH);
-        setY(rnd.nextDouble() * Globals.WINDOW_HEIGHT);
+        SetStartCoordinations();
 
         double direction = rnd.nextDouble() * 360;
         setRotate(direction);

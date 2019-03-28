@@ -44,7 +44,9 @@ public class SnakeHead extends GameEntity implements Interactable {
         Point2D heading = Utils.directionToVector(headRotation, speed);
         setX(getX() + heading.getX());
         setY(getY() + heading.getY());
+        Globals.getInstance().setCurrentHeadPosition(getPosition());
     }
+
 
     public void increaseTemporaryLoopCount() {
         temporaryLoopCount ++;

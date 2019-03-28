@@ -12,12 +12,10 @@ import com.codecool.snake.eventhandler.InputHandler;
 
 import com.sun.javafx.geom.Vec2d;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
 
 import java.util.Random;
 
@@ -27,6 +25,10 @@ public class Game extends Pane {
     private Label healthDisplay = new Label();
     private Button restart = new Button("Restart");
     private GameTimer gameTimer = new GameTimer();
+
+    public Snake getSnake() {
+        return snake;
+    }
 
     public Game() {
         Globals.getInstance().game = this;

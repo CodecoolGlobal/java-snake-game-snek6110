@@ -23,6 +23,9 @@ public class Snake implements Animatable {
     private DelayedModificationList<GameEntity> body;
     private boolean isHigh = false;
 
+    public SnakeHead getHead() {
+        return head;
+    }
 
     public Snake(Vec2d position) {
         head = new SnakeHead(this, position);
@@ -111,9 +114,5 @@ public class Snake implements Animatable {
 
     public boolean isHigh() {
         return isHigh;
-    }
-
-    public SnakeHead getHead() {
-        return head;
     }
 }
