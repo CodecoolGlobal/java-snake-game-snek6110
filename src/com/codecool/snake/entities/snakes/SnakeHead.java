@@ -70,9 +70,13 @@ public class SnakeHead extends GameEntity implements Interactable {
         if (temporaryLoopCount % 2 == 0) {
             updateImage();
         }
+        if (temporaryLoopCount % 20 == 0) {
+            Globals.getInstance().display.updateBackground();
+        }
         if (temporaryLoopCount == 60 * 10) {
             snake.setHigh(false);
             setImage(Globals.getInstance().getImage("SnakeHead"));
+            Globals.getInstance().display.resetBackground();
         }
     }
 
