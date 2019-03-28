@@ -1,11 +1,8 @@
 package com.codecool.snake;
 
 import com.codecool.snake.resources.Resources;
-import com.sun.javafx.geom.Vec2d;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 
-import java.util.Vector;
 
 // class for holding all static stuff
 public class Globals {
@@ -17,18 +14,8 @@ public class Globals {
     public Display display;
     public Game game;
 
-    private GameLoop gameLoop;
+    public GameLoop gameLoop;
     private Resources resources;
-
-    private Vec2d currentHeadPosition;
-
-    public void setCurrentHeadPosition(Vec2d currentHeadPosition) {
-        this.currentHeadPosition = currentHeadPosition;
-    }
-
-    public Vec2d getCurrentHeadPosition() {
-        return currentHeadPosition;
-    }
 
     public static Globals getInstance() {
         if(instance == null) instance = new Globals();
@@ -47,6 +34,21 @@ public class Globals {
         resources.addImage("SecondEnemy", new Image("second_enemy.png"));
         resources.addImage("ThirdEnemy", new Image("third_enemy.png"));
         resources.addImage("PowerUpBerry", new Image("powerup_berry.png"));
+        resources.addImage("SpeedUp", new Image("speed_up.png"));
+        resources.addImage("SpeedDown", new Image("speed_down.png"));
+        resources.addImage("SpeedDownMirrored", new Image("speed_down_mirrored.png"));
+
+        resources.addImage("SnakeHead1", new Image("snake_head_pink1.png"));
+        resources.addImage("SnakeHead2", new Image("snake_head_purple2.png"));
+        resources.addImage("SnakeHead3", new Image("snake_head_blue3.png"));
+        resources.addImage("SnakeHead4", new Image("snake_head_light_blue4.png"));
+        resources.addImage("SnakeHead5", new Image("snake_head_green5.png"));
+        resources.addImage("SnakeHead6", new Image("snake_head_yellow6.png"));
+        resources.addImage("SnakeHead7", new Image("snake_head_read7.png"));
+
+        resources.addImage("Mushroom", new Image("mushroom_red.png"));
+
+
     }
 
     public Image getImage(String name) { return resources.getImage(name); }
