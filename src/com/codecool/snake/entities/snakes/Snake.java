@@ -8,15 +8,20 @@ import com.codecool.snake.eventhandler.InputHandler;
 
 import com.sun.javafx.geom.Vec2d;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Snake implements Animatable {
-    private static final float speed = 2;
+    private static float speed = 2;
     private SimpleIntegerProperty health = new SimpleIntegerProperty(100);
 
     private SnakeHead head;
     private DelayedModificationList<GameEntity> body;
+    private boolean isHigh = false;
 
     public SnakeHead getHead() {
         return head;
@@ -89,6 +94,23 @@ public class Snake implements Animatable {
         GameEntity result = body.getLast();
 
         if(result != null) return result;
+        return head;
+    }
+
+    public void changeSpeed(float diff) {
+        speed += diff;
+    }
+
+
+    public void setHigh(boolean isHigh){
+        this.isHigh = isHigh;
+    }
+
+    public boolean isHigh() {
+        return isHigh;
+    }
+
+    public SnakeHead getHead() {
         return head;
     }
 }

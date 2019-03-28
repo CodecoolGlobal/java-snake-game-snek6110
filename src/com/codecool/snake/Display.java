@@ -3,7 +3,9 @@ package com.codecool.snake;
 import com.codecool.snake.entities.GameEntity;
 import java.util.List;
 
+import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -16,7 +18,6 @@ public class Display {
     private DelayedModificationList<GameEntity> gameObjects = new DelayedModificationList<>();
 
     public Display(Pane pane) {
-
         displayPane = pane;
         displayPane.setStyle("-fx-background-color: #c2b280;");
     }
@@ -43,8 +44,11 @@ public class Display {
         length.setAlignment(Pos.CENTER);
         length.relocate(0, height / 2 + 30);
 
+        Button restart = new Button("Restart");
+        setRestartButtonForGameOver(restart);
+
         clear();
-        displayPane.getChildren().addAll(gameOver, length);
+        displayPane.getChildren().addAll(gameOver, length, restart);
     }
 
     public void remove(GameEntity entity) {
@@ -68,5 +72,32 @@ public class Display {
     public void clear() {
         displayPane.getChildren().clear();
         gameObjects.clear();
+    }
+
+    public void setRestartButton(Button restartButton){
+        restartButton.setOnAction((ActionEvent e) -> Globals.getInstance().game.restart());
+        double windowWidth = Globals.WINDOW_WIDTH;
+        restartButton.setMinWidth(50);
+        restartButton.relocate((windowWidth - 1.5 * restartButton.getMinWidth()), 5);
+        displayPane.getChildren().add(restartButton);
+    }
+
+    public void setRestartButtonForGameOver(Button restartButton){
+        restartButton.setOnAction((ActionEvent e) -> Globals.getInstance().game.restart());
+        double width = Globals.WINDOW_WIDTH;
+        double height = Globals.WINDOW_HEIGHT;
+        restartButton.setMinWidth(50);
+        restartButton.relocate((width / 2 - 0.5 * restartButton.getMinWidth()), height / 2 + 80);
+        displayPane.getChildren().add(restartButton);
+    }
+
+    public void setHealthDisplay(Label healthDisplay, int health){
+        healthDisplay.textProperty().setValue("Health: " + health);
+        healthDisplay.setFont(Font.font(25));
+        displayPane.getChildren().add(healthDisplay);
+    }
+
+    public void refreshDisplayedHealth(Label healthDisplay, Number number) {
+        healthDisplay.textProperty().setValue("Health: " + number.toString());
     }
 }

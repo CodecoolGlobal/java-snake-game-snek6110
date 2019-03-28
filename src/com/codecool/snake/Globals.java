@@ -17,7 +17,7 @@ public class Globals {
     public Display display;
     public Game game;
 
-    private GameLoop gameLoop;
+    public GameLoop gameLoop;
     private Resources resources;
 
     private Vec2d currentHeadPosition;
@@ -47,6 +47,21 @@ public class Globals {
         resources.addImage("SecondEnemy", new Image("second_enemy.png"));
         resources.addImage("ThirdEnemy", new Image("third_enemy.png"));
         resources.addImage("PowerUpBerry", new Image("powerup_berry.png"));
+        resources.addImage("SpeedUp", new Image("speed_up.png"));
+        resources.addImage("SpeedDown", new Image("speed_down.png"));
+        resources.addImage("SpeedDownMirrored", new Image("speed_down_mirrored.png"));
+
+        resources.addImage("SnakeHead1", new Image("snake_head_pink1.png"));
+        resources.addImage("SnakeHead2", new Image("snake_head_purple2.png"));
+        resources.addImage("SnakeHead3", new Image("snake_head_blue3.png"));
+        resources.addImage("SnakeHead4", new Image("snake_head_light_blue4.png"));
+        resources.addImage("SnakeHead5", new Image("snake_head_green5.png"));
+        resources.addImage("SnakeHead6", new Image("snake_head_yellow6.png"));
+        resources.addImage("SnakeHead7", new Image("snake_head_read7.png"));
+
+        resources.addImage("Mushroom", new Image("mushroom_red.png"));
+
+
     }
 
     public Image getImage(String name) { return resources.getImage(name); }
