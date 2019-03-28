@@ -91,7 +91,7 @@ public class SnakeHead extends GameEntity implements Interactable {
             snake.addPart(6);
             snake.setHigh(true);
             setTemporaryLoopCount(0);
-            snake.changeHealth(20);
+            snake.changeHealth(5);
         }
     }
 
