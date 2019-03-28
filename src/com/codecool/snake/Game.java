@@ -3,7 +3,10 @@ package com.codecool.snake;
 import com.codecool.snake.entities.enemies.SecondEnemy;
 import com.codecool.snake.entities.enemies.SimpleEnemy;
 import com.codecool.snake.entities.enemies.ThirdEnemy;
+import com.codecool.snake.entities.powerups.Mushroom;
 import com.codecool.snake.entities.powerups.SimplePowerUp;
+import com.codecool.snake.entities.powerups.SpeedDown;
+import com.codecool.snake.entities.powerups.SpeedUp;
 import com.codecool.snake.entities.snakes.Snake;
 import com.codecool.snake.eventhandler.InputHandler;
 
@@ -16,13 +19,14 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 
+import java.util.Random;
+
 
 public class Game extends Pane {
     private Snake snake = null;
     private Label healthDisplay = new Label();
     private Button restart = new Button("Restart");
     private GameTimer gameTimer = new GameTimer();
-
 
     public Game() {
         Globals.getInstance().game = this;
@@ -35,11 +39,11 @@ public class Game extends Pane {
     public void init() {
         spawnSnake();
         spawnEnemies(3);
-        spawnPowerUps(4);
         Globals.getInstance().display.setHealthDisplay(healthDisplay, snake.getHealth());
         Globals.getInstance().display.setRestartButton(restart);
 
         GameLoop gameLoop = new GameLoop(snake);
+        gameLoop.setPowerUpSpawnRate(360);
         Globals.getInstance().setGameLoop(gameLoop);
         gameTimer.setup(gameLoop::step);
         gameTimer.play();
@@ -79,8 +83,25 @@ public class Game extends Pane {
         }
     }
 
-    private void spawnPowerUps(int numberOfPowerUps) {
+    public void spawnSimplePowerUps(int numberOfPowerUps) {
         for(int i = 0; i < numberOfPowerUps; ++i) new SimplePowerUp();
+    }
+
+    public void spawnARandomPowerUp () {
+        Random random = new Random();
+        switch (random.nextInt(3)) {
+            case 0:
+                new SpeedUp();
+                break;
+            case 1:
+                new SpeedDown();
+                break;
+            case 2:
+                new Mushroom();
+                break;
+        }
+
+
     }
 
     private void setupInputHandling() {
