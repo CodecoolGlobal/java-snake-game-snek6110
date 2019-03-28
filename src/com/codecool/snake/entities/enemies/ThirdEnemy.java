@@ -27,7 +27,7 @@ public class ThirdEnemy extends Enemy implements Animatable, Interactable {
         int speed = 2;
         heading = Utils.directionToVector(direction, speed);
 
-        Circle circle = new Circle(515, 335,  350);
+        Circle circle = new Circle(Globals.WINDOW_WIDTH/2, Globals.WINDOW_HEIGHT/2,  340);
         PathTransition transition = new PathTransition();
         transition.setNode(this);
         transition.setDuration(Duration.seconds(10));
