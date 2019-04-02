@@ -20,10 +20,12 @@ public class SnakeHead extends GameEntity implements Interactable {
     private static final float turnRate = 2;
     private Snake snake;
     private int temporaryLoopCount;
+    final MushroomEffects mushroomEffects;
     private int headImageNumber = 1;
 
 
     public SnakeHead(Snake snake, Vec2d position) {
+        this.mushroomEffects = new MushroomEffects();
         this.snake = snake;
         setImage(Globals.getInstance().getImage("SnakeHead"));
         setPosition(position);
@@ -67,7 +69,7 @@ public class SnakeHead extends GameEntity implements Interactable {
     }
 
     public void getHigh() {
-        if (temporaryLoopCount % 2 == 0) {
+        if (mushroomEffects.shouldFlashHead()) {
             updateImage();
         }
         if (temporaryLoopCount % 20 == 0) {
@@ -107,5 +109,20 @@ public class SnakeHead extends GameEntity implements Interactable {
     @Override
     public String getMessage() {
         return "IMMA SNAEK HED! SPITTIN' MAH WENOM! SPITJU-SPITJU!";
+    }
+}
+
+class MushroomEffects {
+    private boolean shouldFlashHead;
+    public void reset() {
+
+    }
+
+    public boolean shouldFlashHead() {
+        return shouldFlashHead;
+    }
+
+    public void step() {
+        shouldFlashHead = ! shouldFlashHead; // every second step
     }
 }

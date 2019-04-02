@@ -44,6 +44,7 @@ public class Snake implements Animatable {
 
     public void step() {
         SnakeControl turnDir = getUserInput();
+        head.mushroomEffects.step();
 
         if (!isHigh) {
             head.updateRotation(turnDir, speed, 1);
